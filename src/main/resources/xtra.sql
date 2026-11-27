@@ -32,3 +32,15 @@ SELECT * FROM teachers;
 -- ERROR 6:
 -- Column does not exist.
 SELECT phone_number FROM students;
+
+-- ERROR 7:
+-- NOT NULL constraint.
+-- age cannot be NULL.
+INSERT INTO students (id, name, email, age, course_id)
+VALUES (13, 'Missing Age Student should fail', 'missingage@example.com', NULL, (SELECT MIN(course_id) FROM courses));
+
+-- ERROR 8:
+-- NOT NULL constraint.
+-- credits cannot be NULL.
+INSERT INTO courses (course_id, course_name, credits)
+VALUES (10, 'Missing Credits Course should fail', NULL);
